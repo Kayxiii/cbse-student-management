@@ -10,25 +10,28 @@
 </head>
 <body style="background-image: url('https://imgs.search.brave.com/vAH0ocNR0jyFmR-B3sRm063NZzjx1bF_dJBHwQcJyBg/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJ0YWcuY29t/L3dhbGxwYXBlci9m/dWxsLzMvMy85LzU1/NTU1Ni13YWxscGFw/ZXItb2Ytc3R1ZHkt/MjU2MHgxNjAwLXNh/bXN1bmcuanBn'); background-repeat: no-repeat;
   background-attachment: fixed;
-  background-size: 100% 100%;padding-top:10px">	
+  background-size: 100% 100%;">
 
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-  <!-- Brand -->
-  <a class="navbar-brand" href="#">Student Management System </a>
+	<!-- Brand -->
+	<a class="navbar-brand" href="#">Student Management System</a>
 
-  <!-- Toggler/collapsibe Button -->
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+	<!-- Toggler/collapsible Button -->
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+		<span class="navbar-toggler-icon"></span>
+	</button>
 
-  <!-- Navbar links -->
-  <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" th:href="@{/students}">Student Management</a>
-      </li>
-    </ul>
-  </div>
+	<!-- Navbar links -->
+	<div class="collapse navbar-collapse" id="collapsibleNavbar">
+		<ul class="navbar-nav">
+			<li class="nav-item" style="font-size:20px">
+				<a class="nav-link" th:href="@{/students}">Students</a>
+			</li>
+			<li class="nav-item" style="font-size:20px">
+				<a class="nav-link" th:href="@{/courses}">Courses</a>
+			</li>
+		</ul>
+	</div>
 </nav>
 
 <br>
@@ -39,61 +42,32 @@
 			<div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card" style="background-color: rgba(255, 225, 225, .5);">
 				<h1 class="text-center" style="font-family: "Lucida Console", "Courier New", monospace;"> Create New Student</h1>
 				<div class="card-body">
-					<form th:action="@{/students}" th:object ="${student}" method="POST">
+					<form th:action="@{/students}" th:object="${student}" method="POST">
 						<div class="form-group">
 							<label>Student First Name</label>
-							<input
-							type="text"
-							name="firstName"
-							th:field ="*{firstName}"
-							class="form-control"
-							placeholder="Enter Student First Name" 
-							/>
-						
-						</div>		
-						
+							<input type="text" name="firstName" th:field="*{firstName}" class="form-control" placeholder="Enter Student First Name">
+						</div>
 						<div class="form-group">
 							<label>Student Last Name</label>
-							<input
-							type="text"
-							name="lastName"
-							th:field ="*{lastName}"
-							class="form-control"
-							placeholder="Enter Student Last Name" 
-							/>
-						
-						</div>	
-						
+							<input type="text" name="lastName" th:field="*{lastName}" class="form-control" placeholder="Enter Student Last Name">
+						</div>
+						<div class="form-group">
+							<label>Student ID</label>
+							<input type="text" name="studentId" th:field="*{studentId}" class="form-control" placeholder="Enter Student ID">
+						</div>
 						<div class="form-group">
 							<label>Student Email</label>
-							<input
-							type="text"
-							name="email"
-							th:field ="*{email}"
-							class="form-control"
-							placeholder="Enter Student Email" 
-							/>
-						
-						</div>	
-						
+							<input type="email" name="email" th:field="*{email}" class="form-control" placeholder="Enter Student Email">
+						</div>
 						<div class="form-group">
-							<label>College Name</label>
-							<input
-							type="text"
-							name="collegeName"
-							th:field ="*{collegeName}"
-							class="form-control"
-							placeholder="Enter college name" 
-							/>
-						
+							<label>Faculty</label>
+							<input type="text" name="faculty" th:field="*{faculty}" class="form-control" placeholder="Enter Faculty">
 						</div>
-						
-						<div class="box-footer">
-							<button type="submit" class="btn btn-primary">
-								Submit
-							</button>
+						<div class="form-group">
+							<label>Bachelor</label>
+							<input type="text" name="bachelor" th:field="*{bachelor}" class="form-control" placeholder="Enter Bachelor">
 						</div>
-										
+						<button type="submit" class="btn btn-primary">Submit</button>
 					</form>
 				</div>
 			

@@ -9,28 +9,31 @@
 	crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body style="background-image: url('https://imgs.search.brave.com/UeOPdKP6eLZ5rtjg7rSPy2ZEv_mHtbYWYU7A3Z394fw/rs:fit:1200:1080:1/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJmb3J1LmNv/bS93cC1jb250ZW50/L3VwbG9hZHMvMjAy/MS8wMi9XYWxscGFw/ZXItQmxhY2stQW5k/LVdoaXRlLUxhcHRv/cC1Db21wdXRlci1L/ZXlib2FyZHMtVGVj/aDQzLmpwZw'); background-repeat: no-repeat;
+<body style="background-image: url('https://images.unsplash.com/photo-1694253987617-ae47ddace39b?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-repeat: no-repeat;
   background-attachment: fixed;
-  background-size: 100% 100%;padding-top:10px">
+  background-size: 100% 100%">
 
 
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-  <!-- Brand -->
-  <a class="navbar-brand " href="#">Student Management System </a>
+	<!-- Brand -->
+	<a class="navbar-brand" href="#">Student Management System</a>
 
-  <!-- Toggler/collapsibe Button -->
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+	<!-- Toggler/collapsible Button -->
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+		<span class="navbar-toggler-icon"></span>
+	</button>
 
-  <!-- Navbar links -->
-  <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav">
-      <li class="nav-item" style="font-size:20px">
-        <a class="nav-link" th:href="@{/students}">Student Record</a>
-      </li>
-    </ul>
-  </div>
+	<!-- Navbar links -->
+	<div class="collapse navbar-collapse" id="collapsibleNavbar">
+		<ul class="navbar-nav">
+			<li class="nav-item" style="font-size:20px">
+				<a class="nav-link" th:href="@{/students}">Students</a>
+			</li>
+			<li class="nav-item" style="font-size:20px">
+				<a class="nav-link" th:href="@{/courses}">Courses</a>
+			</li>
+		</ul>
+	</div>
 </nav>
 	
 	
@@ -38,7 +41,7 @@
 	<div class="container">
 		<div class="row">
 			
-			<h1 style="padding-left:12px; color:#D3D3D3">List Students</h1>
+			<h1 style="padding-left:12px; color:#FFFFFF">List of Students</h1>
 		
 		</div>
 		
@@ -75,39 +78,35 @@
 		
 		
 		<table class = "table table-striped table-bordered"style="background-color: rgba(255, 225, 225, .5);">
-			
-			<thead class= "table-dark">
-				<tr>  
-					<th>First Name</th>
-					<th>Last Name</th>
-					<th>Email</th>
-					<th>College Name</th>
-					<th style= "text-align:center;">Actions</th>
-					
-				</tr> 
+
+			<thead class="table-dark">
+			<tr>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Student ID</th>
+				<th>Email</th>
+				<th>Faculty</th>
+				<th>Bachelor</th>
+				<th>Actions</th>
+			</tr>
 			</thead>
-			
 			<tbody>
-				<tr th:each= "student: ${students}" style="font-weight: bold">
-					<td th:text = "${student.firstName}">
-					<td th:text = "${student.lastName}">
-					<td th:text = "${student.email}">
-					<td th:text = "${student.collegeName}">
-					
-					<td style= "text-align:center">
-						<a th:href="@{/students/edit/{id}(id=${student.id})}"
-						class="btn btn-primary" style="opacity:.9;font-size:15px;">
-						Update</a>	
-						
-						<a th:href="@{/students/{id}(id=${student.id})}"
-						class="btn btn-danger" style="opacity:.9;font-size:15px;">
-						Delete</a>					
-					</td>
-					
-				</tr>
+			<tr th:each="student : ${students}">
+				<td th:text="${student.firstName}"></td>
+				<td th:text="${student.lastName}"></td>
+				<td th:text="${student.studentId}"></td>
+				<td th:text="${student.email}"></td>
+				<td th:text="${student.faculty}"></td>
+				<td th:text="${student.bachelor}"></td>
+				<td>
+					<a th:href="@{/students/edit/{id}(id=${student.id})}" class="btn btn-primary btn-sm">Update</a>
+					<a th:href="@{/students/{id}(id=${student.id})}" class="btn btn-danger btn-sm">Delete</a>
+					<a th:href="@{/students/enrol/{id}(id=${student.id})}" class="btn btn-success btn-sm">Enrol</a>
+				</td>
+			</tr>
 			</tbody>
-			
-			
+
+
 		</table>
 	
 	</div>
