@@ -1,8 +1,8 @@
-package com.example.smsw.repository; 
+package com.example.studentmanagement.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.smsw.entity.Student;
+import com.example.studentmanagement.entity.Student;
 
 public interface StudentRepository extends JpaRepository<Student, Long>{
 

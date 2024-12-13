@@ -1,4 +1,4 @@
-package com.example.smsw.entity;
+package com.example.studentmanagement.entity;
 
 
 import jakarta.persistence.Column;

@@ -1,4 +1,4 @@
-package com.example.smsw.controller;
+package com.example.studentmanagement.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.example.smsw.entity.Student;
-import com.example.smsw.service.StudentService;
+import com.example.studentmanagement.entity.Student;
+import com.example.studentmanagement.service.StudentService;
 
 import jakarta.servlet.http.HttpSession;
 

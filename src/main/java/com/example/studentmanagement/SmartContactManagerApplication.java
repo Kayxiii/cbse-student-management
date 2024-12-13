@@ -1,12 +1,11 @@
-package com.example.smsw;
+package com.example.studentmanagement;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.example.smsw.entity.Student;
-import com.example.smsw.repository.StudentRepository;
+import com.example.studentmanagement.repository.StudentRepository;
 
 @SpringBootApplication
 public class SmartContactManagerApplication implements CommandLineRunner{
