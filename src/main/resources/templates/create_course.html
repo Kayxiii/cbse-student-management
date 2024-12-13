@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Course</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body style="background-color: #f8f9fa;">
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#">Student Management System</a>
+
+    <!-- Toggler/collapsible Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item" style="font-size:20px">
+                <a class="nav-link" th:href="@{/students}">Students</a>
+            </li>
+            <li class="nav-item" style="font-size:20px">
+                <a class="nav-link" th:href="@{/courses}">Courses</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <h1 class="text-center">Create New Course</h1>
+            <form th:action="@{/courses}" th:object="${course}" method="POST">
+                <div class="form-group">
+                    <label>Course Code</label>
+                    <input type="text" name="courseCode" th:field="*{courseCode}" class="form-control" placeholder="Enter Course Code">
+                </div>
+                <div class="form-group">
+                    <label>Course Name</label>
+                    <input type="text" name="courseName" th:field="*{courseName}" class="form-control" placeholder="Enter Course Name">
+                </div>
+                <div class="form-group">
+                    <label>Credit Hour</label>
+                    <input type="number" name="creditHour" th:field="*{creditHour}" class="form-control" placeholder="Enter Credit Hour">
+                </div>
+                <div class="form-group">
+                    <label>Occurrence</label>
+                    <input type="number" name="occurrence" th:field="*{occurrence}" class="form-control" min="1" max="3">
+                </div>
+                <div class="form-group">
+                    <label>Academic Session</label>
+                    <input type="text" name="academicSession" th:field="*{academicSession}" class="form-control" placeholder="Enter Academic Session">
+                </div>
+                <div class="form-group">
+                    <label>Semester</label>
+                    <input type="number" name="semester" th:field="*{semester}" class="form-control" placeholder="Enter Semester">
+                </div>
+                <div class="form-group">
+                    <label>Day</label>
+                    <select name="day" th:field="*{day}" class="form-control">
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Start Time</label>
+                    <input type="time" name="timeStart" th:field="*{timeStart}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>End Time</label>
+                    <input type="time" name="timeEnd" th:field="*{timeEnd}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Lecturer Name</label>
+                    <input type="text" name="lecturerName" th:field="*{lecturerName}" class="form-control" placeholder="Enter Lecturer Name">
+                </div>
+                <div class="form-group">
+                    <label>Target</label>
+                    <input type="number" name="target" th:field="*{target}" class="form-control" placeholder="Enter Target">
+                </div>
+                <div class="form-group">
+                    <label>Activity</label>
+                    <select name="activity" th:field="*{activity}" class="form-control">
+                        <option value="LEC">LEC</option>
+                        <option value="ONL">ONL</option>
+                        <option value="TUT">TUT</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

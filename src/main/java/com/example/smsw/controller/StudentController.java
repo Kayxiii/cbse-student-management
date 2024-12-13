@@ -1,26 +1,31 @@
 package com.example.smsw.controller;
 
+import com.example.smsw.entity.Course;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.smsw.entity.Student;
 import com.example.smsw.service.StudentService;
-
+import com.example.smsw.service.CourseService;
+import com.example.smsw.service.EnrollmentService;
 import jakarta.servlet.http.HttpSession;
+
+import java.util.Collections;
+import java.util.List;
 
 @Controller
 public class StudentController {
-	
-	private StudentService studentService;
 
-	public StudentController(StudentService studentService) {
-		super();
+	private final StudentService studentService;
+	private final CourseService courseService;
+	private final EnrollmentService enrollmentService;
+
+	public StudentController(StudentService studentService, CourseService courseService, EnrollmentService enrollmentService) {
 		this.studentService = studentService;
+		this.courseService = courseService;
+		this.enrollmentService = enrollmentService;
 	}
 	
 	
@@ -86,7 +91,10 @@ public class StudentController {
 		existingStudent.setFirstName(student.getFirstName());
 		existingStudent.setLastName(student.getLastName());
 		existingStudent.setEmail(student.getEmail());
-		existingStudent.setCollegeName(student.getCollegeName());
+		existingStudent.setFaculty(student.getFaculty());
+		existingStudent.setCourses(student.getCourses());
+		existingStudent.setStudentId(student.getStudentId());
+		existingStudent.setBachelor(student.getBachelor());
 		
 		//save update student object 
 		studentService.updateStudent(existingStudent);
@@ -104,5 +112,34 @@ public class StudentController {
 		session.setAttribute("successMessage", "Successfully Deleted");
 		return "redirect:/students";
 	}
-	
+
+	// Show the Enrol Page
+	@GetMapping("/students/enrol/{id}")
+	public String showEnrolPage(@PathVariable Long id, Model model) {
+		Student student = studentService.getStudentById(id);
+		List<Course> enrolledCourses = (student.getCourses() != null) ? student.getCourses() : Collections.emptyList();
+		List<Course> availableCourses = courseService.getAvailableCourses();
+
+		model.addAttribute("student", student);
+		model.addAttribute("enrolledCourses", enrolledCourses);
+		model.addAttribute("availableCourses", availableCourses);
+
+		return "enroll";
+	}
+
+	// Handle Course Enrollment
+	@PostMapping("/students/enrol/{id}")
+	public String enrolCourses(@PathVariable Long id, @RequestParam List<Long> courseIds, Model model) {
+		try {
+			// Enroll the student in the selected courses
+			enrollmentService.enrollStudentToCourses(id, courseIds);
+
+			// Redirect back to the enrol page after successful enrollment
+			return "redirect:/students/enrol/" + id;
+		} catch (RuntimeException e) {
+			// Handle validation errors (e.g., time clashes, duplicate occurrences)
+			model.addAttribute("error", e.getMessage());
+			return showEnrolPage(id, model);
+		}
+	}
 }
