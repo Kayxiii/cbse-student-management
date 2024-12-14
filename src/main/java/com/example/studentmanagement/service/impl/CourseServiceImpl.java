@@ -1,8 +1,8 @@
-package com.example.smsw.service.impl;
+package com.example.studentmanagement.service.impl;
 
-import com.example.smsw.entity.Course;
-import com.example.smsw.repository.CourseRepository;
-import com.example.smsw.service.CourseService;
+import com.example.studentmanagement.entity.Course;
+import com.example.studentmanagement.repository.CourseRepository;
+import com.example.studentmanagement.service.CourseService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,15 +1,15 @@
-package com.example.smsw.controller;
+package com.example.studentmanagement.controller;
 
-import com.example.smsw.entity.Course;
+import com.example.studentmanagement.entity.Course;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.smsw.entity.Student;
-import com.example.smsw.service.StudentService;
-import com.example.smsw.service.CourseService;
-import com.example.smsw.service.EnrollmentService;
+import com.example.studentmanagement.entity.Student;
+import com.example.studentmanagement.service.StudentService;
+import com.example.studentmanagement.service.CourseService;
+import com.example.studentmanagement.service.EnrollmentService;
 import jakarta.servlet.http.HttpSession;
 
 import java.util.Collections;
@@ -117,8 +117,8 @@ public class StudentController {
 	@GetMapping("/students/enrol/{id}")
 	public String showEnrolPage(@PathVariable Long id, Model model) {
 		Student student = studentService.getStudentById(id);
-		List<Course> enrolledCourses = (student.getCourses() != null) ? student.getCourses() : Collections.emptyList();
-		List<Course> availableCourses = courseService.getAvailableCourses();
+		List<Course> enrolledCourses = enrollmentService.getEnrolledCoursesByStudent(id);
+		List<Course> availableCourses = enrollmentService.getAvailableCourses(student.getId());
 
 		model.addAttribute("student", student);
 		model.addAttribute("enrolledCourses", enrolledCourses);

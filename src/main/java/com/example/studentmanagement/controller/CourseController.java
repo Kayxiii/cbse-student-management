@@ -1,7 +1,7 @@
-package com.example.smsw.controller;
+package com.example.studentmanagement.controller;
 
-import com.example.smsw.entity.Course;
-import com.example.smsw.service.CourseService;
+import com.example.studentmanagement.entity.Course;
+import com.example.studentmanagement.service.CourseService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

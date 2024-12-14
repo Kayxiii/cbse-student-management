@@ -1,4 +1,4 @@
-package com.example.smsw.entity;
+package com.example.studentmanagement.entity;
 
 import jakarta.persistence.*;
 
@@ -11,7 +11,7 @@ public class Enrollment {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "student_id", nullable = false)
+    @JoinColumn(name = "student_id",referencedColumnName = "id", nullable = false) // References `id` in `students`
     private Student student;
 
     @ManyToOne

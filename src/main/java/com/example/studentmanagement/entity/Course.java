@@ -1,4 +1,4 @@
-package com.example.smsw.entity;
+package com.example.studentmanagement.entity;
 
 import jakarta.persistence.*;
 
@@ -55,6 +55,19 @@ public class Course {
 
     @ManyToMany(mappedBy = "courses")
     private List<Student> students;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Course course = (Course) o;
+        return id != null && id.equals(course.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 
     // Getters and Setters
 

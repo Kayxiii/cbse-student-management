@@ -1,6 +1,6 @@
-package com.example.smsw.service;
+package com.example.studentmanagement.service;
 
-import com.example.smsw.entity.Course;
+import com.example.studentmanagement.entity.Course;
 import java.util.List;
 
 public interface CourseService {
