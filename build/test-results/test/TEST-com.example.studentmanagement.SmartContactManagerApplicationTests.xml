@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.studentmanagement.SmartContactManagerApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-12-14T01:16:19" hostname="DESKTOP-F0C337J" time="0.268">
+<testsuite name="com.example.studentmanagement.SmartContactManagerApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-12-14T02:12:15" hostname="DESKTOP-F0C337J" time="0.367">
   <properties/>
-  <testcase name="contextLoads()" classname="com.example.studentmanagement.SmartContactManagerApplicationTests" time="0.268"/>
-  <system-out><![CDATA[09:16:14.407 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Neither @ContextConfiguration nor @ContextHierarchy found for test class [SmartContactManagerApplicationTests]: using SpringBootContextLoader
-09:16:14.413 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader -- Could not detect default resource locations for test class [com.example.studentmanagement.SmartContactManagerApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
-09:16:14.414 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.example.studentmanagement.SmartContactManagerApplicationTests]: SmartContactManagerApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-09:16:14.450 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Using ContextCustomizers for test class [SmartContactManagerApplicationTests]: [DisableObservabilityContextCustomizer, PropertyMappingContextCustomizer, Customizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer, TestRestTemplateContextCustomizer]
-09:16:14.532 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider -- Identified candidate component class: file [C:\Users\user\Documents\.Y4S1\WIF3006 CBSE\student-management\build\classes\java\main\com\example\studentmanagement\SmartContactManagerApplication.class]
-09:16:14.534 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.example.studentmanagement.SmartContactManagerApplication for test class com.example.studentmanagement.SmartContactManagerApplicationTests
-09:16:14.662 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Using TestExecutionListeners for test class [SmartContactManagerApplicationTests]: [ServletTestExecutionListener, DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, TransactionalTestExecutionListener, SqlScriptsTestExecutionListener, EventPublishingTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
-09:16:14.665 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener -- Before test class: class [SmartContactManagerApplicationTests], class annotated with @DirtiesContext [false] with mode [null]
+  <testcase name="contextLoads()" classname="com.example.studentmanagement.SmartContactManagerApplicationTests" time="0.367"/>
+  <system-out><![CDATA[10:12:09.798 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Neither @ContextConfiguration nor @ContextHierarchy found for test class [SmartContactManagerApplicationTests]: using SpringBootContextLoader
+10:12:09.806 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader -- Could not detect default resource locations for test class [com.example.studentmanagement.SmartContactManagerApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+10:12:09.807 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.example.studentmanagement.SmartContactManagerApplicationTests]: SmartContactManagerApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+10:12:09.839 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Using ContextCustomizers for test class [SmartContactManagerApplicationTests]: [DisableObservabilityContextCustomizer, PropertyMappingContextCustomizer, Customizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer, TestRestTemplateContextCustomizer]
+10:12:09.922 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider -- Identified candidate component class: file [C:\Users\user\Documents\.Y4S1\WIF3006 CBSE\student-management\build\classes\java\main\com\example\studentmanagement\SmartContactManagerApplication.class]
+10:12:09.924 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.example.studentmanagement.SmartContactManagerApplication for test class com.example.studentmanagement.SmartContactManagerApplicationTests
+10:12:10.076 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Using TestExecutionListeners for test class [SmartContactManagerApplicationTests]: [ServletTestExecutionListener, DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, TransactionalTestExecutionListener, SqlScriptsTestExecutionListener, EventPublishingTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
+10:12:10.078 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener -- Before test class: class [SmartContactManagerApplicationTests], class annotated with @DirtiesContext [false] with mode [null]
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -19,17 +19,17 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.0.5)
 
-2024-12-14T09:16:15.017+08:00  INFO 55452 --- [    Test worker] .e.s.SmartContactManagerApplicationTests : Starting SmartContactManagerApplicationTests using Java 17.0.12 with PID 55452 (started by user in C:\Users\user\Documents\.Y4S1\WIF3006 CBSE\student-management)
-2024-12-14T09:16:15.019+08:00  INFO 55452 --- [    Test worker] .e.s.SmartContactManagerApplicationTests : The following 1 profile is active: "test"
-2024-12-14T09:16:15.762+08:00  INFO 55452 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-14T09:16:15.861+08:00  INFO 55452 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 85 ms. Found 3 JPA repository interfaces.
-2024-12-14T09:16:16.377+08:00  INFO 55452 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-12-14T09:16:16.465+08:00  INFO 55452 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
-2024-12-14T09:16:16.838+08:00  INFO 55452 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-12-14T09:16:17.061+08:00  INFO 55452 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
-2024-12-14T09:16:17.064+08:00  INFO 55452 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-12-14T09:16:17.088+08:00  INFO 55452 --- [    Test worker] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-2024-12-14T09:16:17.995+08:00  WARN 55452 --- [    Test worker] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "create table courses (id bigint generated by default as identity, academic_session varchar(255) not null, activity varchar(255) not null, actual integer not null, course_code varchar(255) not null, course_name varchar(255) not null, credit_hour integer not null, day varchar(255) not null, lecturer_name varchar(255) not null, occurrence integer not null, registration_status varchar(255) not null, semester integer not null, target integer not null, time_end varchar(255) not null, time_start varchar(255) not null, primary key (id))" via JDBC Statement
+2024-12-14T10:12:10.465+08:00  INFO 37876 --- [    Test worker] .e.s.SmartContactManagerApplicationTests : Starting SmartContactManagerApplicationTests using Java 17.0.12 with PID 37876 (started by user in C:\Users\user\Documents\.Y4S1\WIF3006 CBSE\student-management)
+2024-12-14T10:12:10.466+08:00  INFO 37876 --- [    Test worker] .e.s.SmartContactManagerApplicationTests : The following 1 profile is active: "test"
+2024-12-14T10:12:11.236+08:00  INFO 37876 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-14T10:12:11.335+08:00  INFO 37876 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 84 ms. Found 3 JPA repository interfaces.
+2024-12-14T10:12:11.898+08:00  INFO 37876 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-14T10:12:11.978+08:00  INFO 37876 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2024-12-14T10:12:12.377+08:00  INFO 37876 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-14T10:12:12.600+08:00  INFO 37876 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2024-12-14T10:12:12.602+08:00  INFO 37876 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-14T10:12:12.631+08:00  INFO 37876 --- [    Test worker] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2024-12-14T10:12:13.687+08:00  WARN 37876 --- [    Test worker] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "create table courses (id bigint generated by default as identity, academic_session varchar(255) not null, activity varchar(255) not null, actual integer not null, course_code varchar(255) not null, course_name varchar(255) not null, credit_hour integer not null, day varchar(255) not null, lecturer_name varchar(255) not null, occurrence integer not null, registration_status varchar(255) not null, semester integer not null, target integer not null, time_end varchar(255) not null, time_start varchar(255) not null, primary key (id))" via JDBC Statement
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "create table courses (id bigint generated by default as identity, academic_session varchar(255) not null, activity varchar(255) not null, actual integer not null, course_code varchar(255) not null, course_name varchar(255) not null, credit_hour integer not null, day varchar(255) not null, lecturer_name varchar(255) not null, occurrence integer not null, registration_status varchar(255) not null, semester integer not null, target integer not null, time_end varchar(255) not null, time_start varchar(255) not null, primary key (id))" via JDBC Statement
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
@@ -183,7 +183,7 @@ create table courses (id bigint generated by default as identity, academic_sessi
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
 	... 127 common frames omitted
 
-2024-12-14T09:16:18.023+08:00  WARN 55452 --- [    Test worker] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table if exists enrollments add constraint FKho8mcicp4196ebpltdn9wl6co foreign key (course_id) references courses" via JDBC Statement
+2024-12-14T10:12:13.712+08:00  WARN 37876 --- [    Test worker] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table if exists enrollments add constraint FKho8mcicp4196ebpltdn9wl6co foreign key (course_id) references courses" via JDBC Statement
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table if exists enrollments add constraint FKho8mcicp4196ebpltdn9wl6co foreign key (course_id) references courses" via JDBC Statement
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
@@ -331,7 +331,7 @@ alter table if exists enrollments add constraint FKho8mcicp4196ebpltdn9wl6co for
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
 	... 126 common frames omitted
 
-2024-12-14T09:16:18.036+08:00  WARN 55452 --- [    Test worker] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table if exists student_courses add constraint FKsfpq78oyrqua1h0obpl7ulc18 foreign key (course_id) references courses" via JDBC Statement
+2024-12-14T10:12:13.726+08:00  WARN 37876 --- [    Test worker] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table if exists student_courses add constraint FKsfpq78oyrqua1h0obpl7ulc18 foreign key (course_id) references courses" via JDBC Statement
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table if exists student_courses add constraint FKsfpq78oyrqua1h0obpl7ulc18 foreign key (course_id) references courses" via JDBC Statement
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
@@ -479,10 +479,10 @@ alter table if exists student_courses add constraint FKsfpq78oyrqua1h0obpl7ulc18
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
 	... 126 common frames omitted
 
-2024-12-14T09:16:18.044+08:00  INFO 55452 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2024-12-14T09:16:18.054+08:00  INFO 55452 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-12-14T09:16:19.172+08:00  WARN 55452 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-12-14T09:16:19.635+08:00  INFO 55452 --- [    Test worker] .e.s.SmartContactManagerApplicationTests : Started SmartContactManagerApplicationTests in 4.906 seconds (process running for 6.185)
+2024-12-14T10:12:13.734+08:00  INFO 37876 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-12-14T10:12:13.744+08:00  INFO 37876 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-14T10:12:14.907+08:00  WARN 37876 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-14T10:12:15.404+08:00  INFO 37876 --- [    Test worker] .e.s.SmartContactManagerApplicationTests : Started SmartContactManagerApplicationTests in 5.254 seconds (process running for 6.586)
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

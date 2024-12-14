@@ -39,6 +39,8 @@ public class Student {
 	)
 	private List<Course> courses = new ArrayList<>();
 
+	@OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Enrollment> enrollments;
 
 	//default constructor
 	public Student() {

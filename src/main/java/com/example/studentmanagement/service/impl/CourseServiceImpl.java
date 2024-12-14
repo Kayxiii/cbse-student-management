@@ -1,7 +1,9 @@
 package com.example.studentmanagement.service.impl;
 
 import com.example.studentmanagement.entity.Course;
+import com.example.studentmanagement.entity.Enrollment;
 import com.example.studentmanagement.repository.CourseRepository;
+import com.example.studentmanagement.repository.EnrollmentRepository;
 import com.example.studentmanagement.service.CourseService;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +13,11 @@ import java.util.stream.Collectors;
 @Service
 public class CourseServiceImpl implements CourseService {
     private final CourseRepository courseRepository;
+    private final EnrollmentRepository enrollmentRepository;
 
-    public CourseServiceImpl(CourseRepository courseRepository) {
+    public CourseServiceImpl(CourseRepository courseRepository, EnrollmentRepository enrollmentRepository) {
         this.courseRepository = courseRepository;
+        this.enrollmentRepository = enrollmentRepository;
     }
 
     @Override
@@ -38,6 +42,11 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public void deleteCourseById(Long id) {
+        // Delete associated enrollments
+        List<Enrollment> enrollments = enrollmentRepository.findByCourseId(id);
+        enrollmentRepository.deleteAll(enrollments);
+
+        // Delete the course
         courseRepository.deleteById(id);
     }
 

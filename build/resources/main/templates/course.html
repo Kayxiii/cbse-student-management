@@ -72,8 +72,8 @@
           <td th:text="${course.timeStart} + ' - ' + ${course.timeEnd}"></td>
           <td th:text="${course.registrationStatus}"></td>
           <td>
-            <a th:href="@{/courses/edit/{id}(id=${course.id})}" class="btn btn-primary btn-sm">Update</a>
-            <a th:href="@{/courses/{id}(id=${course.id})}" class="btn btn-danger btn-sm">Delete</a>
+            <a th:href="@{/courses/edit/{id}(id=${course.id})}" method="POST" class="btn btn-primary btn-sm">Update</a>
+            <a th:href="@{/courses/{id}(id=${course.id})}" method="GET" class="btn btn-danger btn-sm">Delete</a>
           </td>
         </tr>
         </tbody>

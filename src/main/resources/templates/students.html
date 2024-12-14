@@ -99,8 +99,8 @@
 				<td th:text="${student.faculty}"></td>
 				<td th:text="${student.bachelor}"></td>
 				<td>
-					<a th:href="@{/students/edit/{id}(id=${student.id})}" class="btn btn-primary btn-sm">Update</a>
-					<a th:href="@{/students/{id}(id=${student.id})}" class="btn btn-danger btn-sm">Delete</a>
+					<a th:href="@{/students/edit/{id}(id=${student.id})}" method="POST" class="btn btn-primary btn-sm">Update</a>
+					<a th:href="@{/students/{id}(id=${student.id})}" method="GET" class="btn btn-danger btn-sm">Delete</a>
 					<a th:href="@{/students/enrolment/{id}(id=${student.id})}" class="btn btn-success btn-sm">Enrol</a>
 				</td>
 			</tr>
