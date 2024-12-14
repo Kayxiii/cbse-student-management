@@ -2,6 +2,7 @@ package com.example.studentmanagement.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.studentmanagement.entity.Student;
@@ -12,8 +13,8 @@ import com.example.studentmanagement.service.StudentService;
 public class StudentServiceImpl implements StudentService{
 
 	private StudentRepository studentRepository;
-	
-	
+
+	@Autowired
 	public StudentServiceImpl(StudentRepository studentRepository) {
 		super();
 		this.studentRepository = studentRepository;

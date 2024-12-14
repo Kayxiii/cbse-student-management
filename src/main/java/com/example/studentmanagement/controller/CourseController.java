@@ -3,6 +3,7 @@ package com.example.studentmanagement.controller;
 import com.example.studentmanagement.entity.Course;
 import com.example.studentmanagement.service.CourseService;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +17,7 @@ import java.time.format.DateTimeFormatter;
 @RequestMapping("/courses")
 public class CourseController {
     private final CourseService courseService;
-
+    @Autowired
     public CourseController(CourseService courseService) {
         this.courseService = courseService;
     }

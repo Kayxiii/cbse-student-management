@@ -1,5 +1,6 @@
 package com.example.studentmanagement.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,13 +17,9 @@ import jakarta.servlet.http.HttpSession;
 public class StudentController {
 
 	private final StudentService studentService;
-	private final CourseService courseService;
-	private final EnrollmentService enrollmentService;
-
-	public StudentController(StudentService studentService, CourseService courseService, EnrollmentService enrollmentService) {
+	@Autowired
+	public StudentController(StudentService studentService) {
 		this.studentService = studentService;
-		this.courseService = courseService;
-		this.enrollmentService = enrollmentService;
 	}
 
 	//handler to remove popup success message as blank 

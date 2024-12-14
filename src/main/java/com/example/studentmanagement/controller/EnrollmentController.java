@@ -17,13 +17,10 @@ import java.util.List;
 public class EnrollmentController {
 
     private final StudentService studentService;
-    private final CourseService courseService;
-    @Autowired
     private final EnrollmentService enrollmentService;
     @Autowired
-    public EnrollmentController(StudentService studentService, CourseService courseService, EnrollmentService enrollmentService) {
+    public EnrollmentController(StudentService studentService, EnrollmentService enrollmentService) {
         this.studentService = studentService;
-        this.courseService = courseService;
         this.enrollmentService = enrollmentService;
     }
 

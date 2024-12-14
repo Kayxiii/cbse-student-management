@@ -65,6 +65,11 @@ public class EnrollmentServiceImpl implements EnrollmentService {
         Set<String> uniqueCourseCodes = new HashSet<>();
 
         for (Course selectedCourse : selectedCourses) {
+            // Check if the course has space for enrollment
+            if (selectedCourse.getActual() >= selectedCourse.getTarget()) {
+                throw new RuntimeException("Course " + selectedCourse.getCourseName() + " has reached its maximum capacity.");
+            }
+
             // Check for duplicate course codes within the selected courses
             if (!uniqueCourseCodes.add(selectedCourse.getCourseCode())) {
                 throw new RuntimeException("Duplicate course code found within the selected courses: " + selectedCourse.getCourseCode());
