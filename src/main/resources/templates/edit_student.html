@@ -41,6 +41,12 @@
 		<div class= "row">
 			<div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card"  style="background-color: rgba(255, 225, 225, .5);">
 				<h1 class="text-center" style="font-family: "Lucida Console", "Courier New", monospace;"> Update Student</h1>
+
+				<!-- Display Error Message -->
+				<div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+					<p th:text="${errorMessage}"></p>
+				</div>
+
 				<div class="card-body">
 					<form th:action="@{/students/{id}(id=${student.id})}" th:object="${student}" method="POST">
 						<div class="form-group">

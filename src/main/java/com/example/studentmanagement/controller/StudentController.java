@@ -52,10 +52,17 @@ public class StudentController {
 
 	//saving student
 	@PostMapping
-	public String saveStudent(@ModelAttribute("student") Student student, HttpSession session) {
-		studentService.saveStudent(student);
-		session.setAttribute("successMessage", "Successfully Added");
-		return "redirect:/students";
+	public String saveStudent(@ModelAttribute("student") Student student, Model model, HttpSession session) {
+		try {
+			studentService.saveStudent(student);
+			session.setAttribute("successMessage", "Successfully Added");
+			return "redirect:/students";
+		} catch (IllegalArgumentException e) {
+			// Add error message to model
+			model.addAttribute("errorMessage", e.getMessage());
+			model.addAttribute("student", student);
+			return "create_student";
+		}
 	}
 
 	//get the update or edit page
@@ -81,12 +88,18 @@ public class StudentController {
 		existingStudent.setCourses(student.getCourses());
 		existingStudent.setStudentId(student.getStudentId());
 		existingStudent.setBachelor(student.getBachelor());
-		
-		//save update student object 
-		studentService.updateStudent(existingStudent);
-		session.setAttribute("successMessage", "Successfully Updated");
-		return "redirect:/students";
-	
+
+		try {
+			//save update student object
+			studentService.updateStudent(existingStudent);
+			session.setAttribute("successMessage", "Successfully Updated");
+			return "redirect:/students";
+		} catch (IllegalArgumentException e) {
+			// Add error message to model
+			model.addAttribute("errorMessage", e.getMessage());
+			model.addAttribute("student", student);
+			return "edit_student";
+		}
 	}
 
 	//handler method to delete student
