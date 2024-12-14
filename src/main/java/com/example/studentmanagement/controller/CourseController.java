@@ -3,6 +3,7 @@ package com.example.studentmanagement.controller;
 import com.example.studentmanagement.entity.Course;
 import com.example.studentmanagement.service.CourseService;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,13 @@ public class CourseController {
 
     public CourseController(CourseService courseService) {
         this.courseService = courseService;
+    }
+
+    //handler to remove popup success message as blank
+    @PostMapping("/resetSuccessMessage")
+    public ResponseEntity<Void> resetSuccessMessage(HttpSession session) {
+        session.removeAttribute("successCourseMessage");
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping
@@ -73,10 +81,9 @@ public class CourseController {
             courseService.saveCourse(newCourse);
         }
 
-        session.setAttribute("successMessage", "Successfully Added " + occurrenceCount + " Occurrences");
+        session.setAttribute("successCourseMessage", "Successfully Added " + occurrenceCount + " Occurrences");
         return "redirect:/courses";
     }
-
 
     @GetMapping("/edit/{id}")
     public String editCourseForm(@PathVariable Long id, Model model) {
@@ -105,14 +112,14 @@ public class CourseController {
         // Save updated course
         courseService.updateCourse(existingCourse);
 
-        session.setAttribute("successMessage", "Successfully Updated");
+        session.setAttribute("successCourseMessage", "Successfully Updated");
         return "redirect:/courses";
     }
 
     @GetMapping("/{id}")
     public String deleteCourse(@PathVariable Long id, HttpSession session) {
         courseService.deleteCourseById(id);
-        session.setAttribute("successMessage", "Successfully Deleted");
+        session.setAttribute("successCourseMessage", "Successfully Deleted");
         return "redirect:/courses";
     }
 }

@@ -1,6 +1,5 @@
 package com.example.studentmanagement.controller;
 
-import com.example.studentmanagement.entity.Course;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,10 +11,8 @@ import com.example.studentmanagement.service.CourseService;
 import com.example.studentmanagement.service.EnrollmentService;
 import jakarta.servlet.http.HttpSession;
 
-import java.util.Collections;
-import java.util.List;
-
 @Controller
+@RequestMapping("/students")
 public class StudentController {
 
 	private final StudentService studentService;
@@ -27,31 +24,23 @@ public class StudentController {
 		this.courseService = courseService;
 		this.enrollmentService = enrollmentService;
 	}
-	
-	
+
 	//handler to remove popup success message as blank 
 	@PostMapping("/resetSuccessMessage")
 	public ResponseEntity<Void> resetSuccessMessage(HttpSession session) {
 		session.removeAttribute("successMessage");
 		return ResponseEntity.ok().build();
 	}
-		
-	
-	
-	
-	//what should get and what should not will be done here.
-	
-	//handler method to handle list of students and return mode and view 
-	
-	@GetMapping("/students")
+
+	//handler method to handle list of students and return mode and view
+	@GetMapping
 	public String listStudents(Model model) {
 		model.addAttribute("students", studentService.getAllStudents());
 		return "students";
 	}
-	
-	
+
 	//get the add student page
-	@GetMapping("/students/new")
+	@GetMapping("/new")
 	public String createStudentForm(Model model) {
 		
 		//create student object from student form data
@@ -60,27 +49,24 @@ public class StudentController {
 		return "create_student";
 		
 	}
-	
-	
+
 	//saving student
-	@PostMapping("/students")
+	@PostMapping
 	public String saveStudent(@ModelAttribute("student") Student student, HttpSession session) {
 		studentService.saveStudent(student);
 		session.setAttribute("successMessage", "Successfully Added");
 		return "redirect:/students";
 	}
-	
-	
+
 	//get the update or edit page
-	@GetMapping("/students/edit/{id}")
+	@GetMapping("/edit/{id}")
 	public String editStudentForm(@PathVariable Long id, Model model) {
 		model.addAttribute("student", studentService.getStudentById(id));
 		return "edit_student";
 	}
-	
-	
+
 	//update data into existing table
-	@PostMapping("/students/{id}")
+	@PostMapping("/{id}")
 	public String updateStudent(@PathVariable Long id,
 			@ModelAttribute("student") Student student,
 			Model model, HttpSession session) {
@@ -102,44 +88,13 @@ public class StudentController {
 		return "redirect:/students";
 	
 	}
-	
-	
-	
+
 	//handler method to delete student
-	@GetMapping("/students/{id}")
+	@GetMapping("/{id}")
 	public String deleteStudent(@PathVariable Long id, HttpSession session) {
 		studentService.deleteStudentById(id);
 		session.setAttribute("successMessage", "Successfully Deleted");
 		return "redirect:/students";
 	}
 
-	// Show the Enrol Page
-	@GetMapping("/students/enrol/{id}")
-	public String showEnrolPage(@PathVariable Long id, Model model) {
-		Student student = studentService.getStudentById(id);
-		List<Course> enrolledCourses = enrollmentService.getEnrolledCoursesByStudent(id);
-		List<Course> availableCourses = enrollmentService.getAvailableCourses(student.getId());
-
-		model.addAttribute("student", student);
-		model.addAttribute("enrolledCourses", enrolledCourses);
-		model.addAttribute("availableCourses", availableCourses);
-
-		return "enroll";
-	}
-
-	// Handle Course Enrollment
-	@PostMapping("/students/enrol/{id}")
-	public String enrolCourses(@PathVariable Long id, @RequestParam List<Long> courseIds, Model model) {
-		try {
-			// Enroll the student in the selected courses
-			enrollmentService.enrollStudentToCourses(id, courseIds);
-
-			// Redirect back to the enrol page after successful enrollment
-			return "redirect:/students/enrol/" + id;
-		} catch (RuntimeException e) {
-			// Handle validation errors (e.g., time clashes, duplicate occurrences)
-			model.addAttribute("error", e.getMessage());
-			return showEnrolPage(id, model);
-		}
-	}
 }

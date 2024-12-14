@@ -1,7 +1,6 @@
 package com.example.studentmanagement.controller;
 
 import com.example.studentmanagement.entity.Course;
-import com.example.studentmanagement.entity.Enrollment;
 import com.example.studentmanagement.entity.Student;
 import com.example.studentmanagement.service.CourseService;
 import com.example.studentmanagement.service.EnrollmentService;
@@ -45,7 +44,7 @@ public class EnrollmentController {
     }
 
     @PostMapping("/{studentId}/enroll")
-    public String enrollCourses(@PathVariable Long studentId, @RequestParam List<Long> courseIds, Model model) {
+    public String enrollCourses(@PathVariable Long studentId, @RequestParam(value = "courseIds", required = false) List<Long> courseIds, Model model) {
         try {
             if (courseIds == null || courseIds.isEmpty()) {
                 throw new RuntimeException("No courses selected for enrollment.");
