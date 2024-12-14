@@ -8,10 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.example.studentmanagement.repository.StudentRepository;
 
 @SpringBootApplication
-public class SmartContactManagerApplication implements CommandLineRunner{
+public class SmartStudentManagerApplication implements CommandLineRunner{
 
 	public static void main(String[] args) {
-		SpringApplication.run(SmartContactManagerApplication.class, args);
+		SpringApplication.run(SmartStudentManagerApplication.class, args);
 	}
 
 	
