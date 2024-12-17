@@ -68,11 +68,10 @@
     <!--Popup message-->
 
     <!--Now print if successMessage is true-->
-    <div id="success-message" th:if="${session.successMessage}" class="alert alert-success success-message"
-         role="alert">
-        <p th:text="${session.successMessage}"></p>
+    <!-- Success Message -->
+    <div id="success-message" th:if="${successMessage}" class="alert alert-success success-message" role="alert">
+        <p th:text="${successMessage}"></p>
     </div>
-    <input type="hidden" id="showPopup" th:value="${session.successMessage != null}"/>
 
 
     <table class="table table-striped table-bordered" style="background-color: rgba(255, 225, 225, .5);">
@@ -118,27 +117,24 @@
 <!-- JavaScript -->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        // Hide success message after 2 seconds
-        function hideSuccessMessage() {
-            var successMessageElement = document.getElementById('success-message');
-            if (successMessageElement) {
-                successMessageElement.style.display = 'none';
-                // Reset success message on the server
-                fetch('/resetSuccessMessage', { method: 'POST' });
-            }
-        }
+           // Hide success message after 2 seconds
+           setTimeout(function () {
+               var successMessageElement = document.getElementById('success-message');
+               if (successMessageElement) {
+                   successMessageElement.style.display = 'none';
+               }
+           }, 2000);
+       });
 
-        setTimeout(hideSuccessMessage, 2000);
-
-        // Display popup if needed
-        var showPopupElement = document.getElementById('showPopup');
-        if (showPopupElement && showPopupElement.value === "true") {
-            var successMessageElement = document.getElementById('success-message');
-            if (successMessageElement) {
-                successMessageElement.style.display = 'block';
-            }
-        }
-    });
+           // Display popup if needed
+           var showPopupElement = document.getElementById('showPopup');
+           if (showPopupElement && showPopupElement.value === "true") {
+               var successMessageElement = document.getElementById('success-message');
+               if (successMessageElement) {
+                   successMessageElement.style.display = 'block';
+               }
+           }
+       });
 </script>
 </body>
 </html>

@@ -42,10 +42,9 @@
   </div>
 
   <!-- Success Message -->
-  <div id="success-message" th:if="${session.successMessage}" class="alert alert-success" role="alert">
-    <p th:text="${session.successMessage}"></p>
+  <div id="success-message" th:if="${successCourseMessage}" class="alert alert-success" role="alert">
+    <p th:text="${successCourseMessage}"></p>
   </div>
-  <input type="hidden" id="showPopup" th:value="${session.successMessage != null}" />
 
 
   <div class="row">

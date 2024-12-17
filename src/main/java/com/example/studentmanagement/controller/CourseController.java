@@ -3,6 +3,8 @@ package com.example.studentmanagement.controller;
 import com.example.studentmanagement.entity.Course;
 import com.example.studentmanagement.service.CourseService;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,16 +17,32 @@ import java.time.format.DateTimeFormatter;
 @RequestMapping("/courses")
 public class CourseController {
     private final CourseService courseService;
-
+    @Autowired
     public CourseController(CourseService courseService) {
         this.courseService = courseService;
     }
 
+    //handler to remove popup success message as blank
+    @PostMapping("/resetSuccessMessage")
+    public ResponseEntity<Void> resetSuccessMessage(HttpSession session) {
+        session.removeAttribute("successCourseMessage");
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping
-    public String listCourses(Model model) {
+    public String listCourses(Model model, HttpSession session) {
         model.addAttribute("courses", courseService.getAllCourses());
+
+        // Pass the success message to the view if present
+        Object successMessage = session.getAttribute("successCourseMessage");
+        if (successMessage != null) {
+            model.addAttribute("successCourseMessage", successMessage);
+            session.removeAttribute("successCourseMessage"); // Remove after use
+        }
+
         return "course";
     }
+
 
     @GetMapping("/new")
     public String createCourseForm(Model model) {
@@ -73,10 +91,9 @@ public class CourseController {
             courseService.saveCourse(newCourse);
         }
 
-        session.setAttribute("successMessage", "Successfully Added " + occurrenceCount + " Occurrences");
+        session.setAttribute("successCourseMessage", "Successfully Added " + course.getCourseName());
         return "redirect:/courses";
     }
-
 
     @GetMapping("/edit/{id}")
     public String editCourseForm(@PathVariable Long id, Model model) {
@@ -105,14 +122,14 @@ public class CourseController {
         // Save updated course
         courseService.updateCourse(existingCourse);
 
-        session.setAttribute("successMessage", "Successfully Updated");
+        session.setAttribute("successCourseMessage", "Successfully Updated");
         return "redirect:/courses";
     }
 
     @GetMapping("/{id}")
     public String deleteCourse(@PathVariable Long id, HttpSession session) {
         courseService.deleteCourseById(id);
-        session.setAttribute("successMessage", "Successfully Deleted");
+        session.setAttribute("successCourseMessage", "Successfully Deleted");
         return "redirect:/courses";
     }
 }

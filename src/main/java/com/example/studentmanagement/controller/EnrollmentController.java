@@ -1,7 +1,6 @@
 package com.example.studentmanagement.controller;
 
 import com.example.studentmanagement.entity.Course;
-import com.example.studentmanagement.entity.Enrollment;
 import com.example.studentmanagement.entity.Student;
 import com.example.studentmanagement.service.CourseService;
 import com.example.studentmanagement.service.EnrollmentService;
@@ -18,13 +17,10 @@ import java.util.List;
 public class EnrollmentController {
 
     private final StudentService studentService;
-    private final CourseService courseService;
-    @Autowired
     private final EnrollmentService enrollmentService;
     @Autowired
-    public EnrollmentController(StudentService studentService, CourseService courseService, EnrollmentService enrollmentService) {
+    public EnrollmentController(StudentService studentService, EnrollmentService enrollmentService) {
         this.studentService = studentService;
-        this.courseService = courseService;
         this.enrollmentService = enrollmentService;
     }
 
@@ -45,7 +41,7 @@ public class EnrollmentController {
     }
 
     @PostMapping("/{studentId}/enroll")
-    public String enrollCourses(@PathVariable Long studentId, @RequestParam List<Long> courseIds, Model model) {
+    public String enrollCourses(@PathVariable Long studentId, @RequestParam(value = "courseIds", required = false) List<Long> courseIds, Model model) {
         try {
             if (courseIds == null || courseIds.isEmpty()) {
                 throw new RuntimeException("No courses selected for enrollment.");

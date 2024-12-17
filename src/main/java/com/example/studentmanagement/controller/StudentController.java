@@ -1,6 +1,7 @@
 package com.example.studentmanagement.controller;
 
-import com.example.studentmanagement.entity.Course;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,48 +11,32 @@ import com.example.studentmanagement.entity.Student;
 import com.example.studentmanagement.service.StudentService;
 import com.example.studentmanagement.service.CourseService;
 import com.example.studentmanagement.service.EnrollmentService;
-import jakarta.servlet.http.HttpSession;
-
-import java.util.Collections;
-import java.util.List;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
+@RequestMapping("/students")
 public class StudentController {
 
 	private final StudentService studentService;
 	private final CourseService courseService;
 	private final EnrollmentService enrollmentService;
 
+    @Autowired
 	public StudentController(StudentService studentService, CourseService courseService, EnrollmentService enrollmentService) {
 		this.studentService = studentService;
 		this.courseService = courseService;
 		this.enrollmentService = enrollmentService;
 	}
-	
-	
-	//handler to remove popup success message as blank 
-	@PostMapping("/resetSuccessMessage")
-	public ResponseEntity<Void> resetSuccessMessage(HttpSession session) {
-		session.removeAttribute("successMessage");
-		return ResponseEntity.ok().build();
-	}
-		
-	
-	
-	
-	//what should get and what should not will be done here.
-	
-	//handler method to handle list of students and return mode and view 
-	
-	@GetMapping("/students")
+
+	//handler method to handle list of students and return mode and view
+	@GetMapping
 	public String listStudents(Model model) {
 		model.addAttribute("students", studentService.getAllStudents());
 		return "students";
 	}
-	
-	
+
 	//get the add student page
-	@GetMapping("/students/new")
+	@GetMapping("/new")
 	public String createStudentForm(Model model) {
 		
 		//create student object from student form data
@@ -60,30 +45,34 @@ public class StudentController {
 		return "create_student";
 		
 	}
-	
-	
+
 	//saving student
-	@PostMapping("/students")
-	public String saveStudent(@ModelAttribute("student") Student student, HttpSession session) {
-		studentService.saveStudent(student);
-		session.setAttribute("successMessage", "Successfully Added");
-		return "redirect:/students";
+	@PostMapping
+	public String saveStudent(@ModelAttribute("student") Student student, Model model, RedirectAttributes redirectAttributes) {
+		try {
+			studentService.saveStudent(student);
+			redirectAttributes.addFlashAttribute("successMessage", "Successfully Added");
+			return "redirect:/students";
+		} catch (IllegalArgumentException e) {
+			// Add error message to model
+			model.addAttribute("errorMessage", e.getMessage());
+			model.addAttribute("student", student);
+			return "create_student";
+		}
 	}
-	
-	
+
 	//get the update or edit page
-	@GetMapping("/students/edit/{id}")
+	@GetMapping("/edit/{id}")
 	public String editStudentForm(@PathVariable Long id, Model model) {
 		model.addAttribute("student", studentService.getStudentById(id));
 		return "edit_student";
 	}
-	
-	
+
 	//update data into existing table
-	@PostMapping("/students/{id}")
+	@PostMapping("/{id}")
 	public String updateStudent(@PathVariable Long id,
 			@ModelAttribute("student") Student student,
-			Model model, HttpSession session) {
+			Model model, RedirectAttributes redirectAttributes) {
 		
 		//get student from database by id
 		Student existingStudent = studentService.getStudentById(id);
@@ -95,19 +84,25 @@ public class StudentController {
 		existingStudent.setCourses(student.getCourses());
 		existingStudent.setStudentId(student.getStudentId());
 		existingStudent.setBachelor(student.getBachelor());
-		
-		//save update student object 
-		studentService.updateStudent(existingStudent);
-		session.setAttribute("successMessage", "Successfully Updated");
-		return "redirect:/students";
-	
+
+		try {
+			//save update student object
+			studentService.updateStudent(existingStudent);
+			redirectAttributes.addFlashAttribute("successMessage", "Successfully Updated");
+			return "redirect:/students";
+		} catch (IllegalArgumentException e) {
+			// Add error message to model
+			model.addAttribute("errorMessage", e.getMessage());
+			model.addAttribute("student", student);
+			return "edit_student";
+		}
 	}
 
 	//handler method to delete student
-	@PostMapping("/students/delete/{id}")
-	public String deleteStudent(@PathVariable Long id, HttpSession session) {
+	@PostMapping("/delete/{id}")
+	public String deleteStudent(@PathVariable Long id, RedirectAttributes redirectAttributes) {
 		studentService.deleteStudentById(id);
-		session.setAttribute("successMessage", "Successfully Deleted");
+		redirectAttributes.addFlashAttribute("successMessage", "Student deleted successfully!");
 		return "redirect:/students";
 	}
 }

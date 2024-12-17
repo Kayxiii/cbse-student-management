@@ -5,6 +5,7 @@ import com.example.studentmanagement.entity.Enrollment;
 import com.example.studentmanagement.repository.CourseRepository;
 import com.example.studentmanagement.repository.EnrollmentRepository;
 import com.example.studentmanagement.service.CourseService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.stream.Collectors;
 public class CourseServiceImpl implements CourseService {
     private final CourseRepository courseRepository;
     private final EnrollmentRepository enrollmentRepository;
-
+    @Autowired
     public CourseServiceImpl(CourseRepository courseRepository, EnrollmentRepository enrollmentRepository) {
         this.courseRepository = courseRepository;
         this.enrollmentRepository = enrollmentRepository;
