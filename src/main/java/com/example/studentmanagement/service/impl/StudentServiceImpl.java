@@ -1,59 +1,85 @@
 package com.example.studentmanagement.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
-import org.springframework.stereotype.Service;
-
+import com.example.studentmanagement.entity.Enrollment;
+import com.example.studentmanagement.repository.CourseRepository;
+import com.example.studentmanagement.entity.Course;
 import com.example.studentmanagement.entity.Student;
+import com.example.studentmanagement.repository.EnrollmentRepository;
 import com.example.studentmanagement.repository.StudentRepository;
 import com.example.studentmanagement.service.StudentService;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import jakarta.transaction.Transactional;
+
 @Service
-public class StudentServiceImpl implements StudentService{
+@Transactional
+public class StudentServiceImpl implements StudentService {
 
-	private StudentRepository studentRepository;
-	
-	
-	public StudentServiceImpl(StudentRepository studentRepository) {
-		super();
+	private final StudentRepository studentRepository;
+	private final CourseRepository courseRepository;
+	private final EnrollmentRepository enrollmentRepository;
+
+	// Constructor Injection
+	@Autowired
+	public StudentServiceImpl(StudentRepository studentRepository, CourseRepository courseRepository, EnrollmentRepository enrollmentRepository) {
 		this.studentRepository = studentRepository;
+		this.courseRepository = courseRepository;
+        this.enrollmentRepository = enrollmentRepository;
 	}
-	
-	//updating data whenever service will called.
-
 
 	@Override
 	public List<Student> getAllStudents() {
-		
 		return studentRepository.findAll();
 	}
 
-
 	@Override
 	public Student saveStudent(Student student) {
-		// TODO Auto-generated method stub
 		return studentRepository.save(student);
 	}
 
-	//to get data from the database
 	@Override
 	public Student getStudentById(Long id) {
-		return studentRepository.findById(id).get();
+		// Handle Optional properly
+		return studentRepository.findById(id)
+				.orElseThrow(() -> new RuntimeException("Student not found with ID: " + id));
 	}
-
 
 	@Override
 	public Student updateStudent(Student student) {
-		// TODO Auto-generated method stub
 		return studentRepository.save(student);
 	}
 
-
 	@Override
+	@Transactional
 	public void deleteStudentById(Long id) {
-		// TODO Auto-generated method stub
-		studentRepository.deleteById(id);
-		
+		// Step 1: Fetch the student and validate existence
+		Student student = studentRepository.findById(id)
+				.orElseThrow(() -> new RuntimeException("Student not found with ID: " + id));
+
+		// Step 2: Fetch enrollments for the student
+		List<Enrollment> enrollments = enrollmentRepository.findByStudentId(id);
+
+		// Step 3: Update 'actual' count for each course associated with the enrollments
+		for (Enrollment enrollment : enrollments) {
+			Course course = enrollment.getCourse();
+
+			// Decrease the actual count (ensure it does not go below zero)
+			int updatedActual = Math.max(course.getActual() - 1, 0);
+			course.setActual(updatedActual);
+
+			// Save the updated course
+			courseRepository.save(course);
+		}
+
+		// Step 4: Delete all enrollments for the student
+		enrollmentRepository.deleteAll(enrollments);
+
+		// Step 5: Delete the student
+		studentRepository.delete(student);
 	}
 
 }

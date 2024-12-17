@@ -102,44 +102,12 @@ public class StudentController {
 		return "redirect:/students";
 	
 	}
-	
-	
-	
+
 	//handler method to delete student
-	@GetMapping("/students/{id}")
+	@PostMapping("/students/delete/{id}")
 	public String deleteStudent(@PathVariable Long id, HttpSession session) {
 		studentService.deleteStudentById(id);
 		session.setAttribute("successMessage", "Successfully Deleted");
 		return "redirect:/students";
-	}
-
-	// Show the Enrol Page
-	@GetMapping("/students/enrol/{id}")
-	public String showEnrolPage(@PathVariable Long id, Model model) {
-		Student student = studentService.getStudentById(id);
-		List<Course> enrolledCourses = enrollmentService.getEnrolledCoursesByStudent(id);
-		List<Course> availableCourses = enrollmentService.getAvailableCourses(student.getId());
-
-		model.addAttribute("student", student);
-		model.addAttribute("enrolledCourses", enrolledCourses);
-		model.addAttribute("availableCourses", availableCourses);
-
-		return "enroll";
-	}
-
-	// Handle Course Enrollment
-	@PostMapping("/students/enrol/{id}")
-	public String enrolCourses(@PathVariable Long id, @RequestParam List<Long> courseIds, Model model) {
-		try {
-			// Enroll the student in the selected courses
-			enrollmentService.enrollStudentToCourses(id, courseIds);
-
-			// Redirect back to the enrol page after successful enrollment
-			return "redirect:/students/enrol/" + id;
-		} catch (RuntimeException e) {
-			// Handle validation errors (e.g., time clashes, duplicate occurrences)
-			model.addAttribute("error", e.getMessage());
-			return showEnrolPage(id, model);
-		}
 	}
 }
