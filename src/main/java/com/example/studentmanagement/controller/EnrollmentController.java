@@ -41,7 +41,8 @@ public class EnrollmentController {
     }
 
     @PostMapping("/{studentId}/enroll")
-    public String enrollCourses(@PathVariable Long studentId, @RequestParam(value = "courseIds", required = false) List<Long> courseIds, Model model) {
+    public String enrollCourses(@PathVariable Long studentId, @RequestParam(value = "courseIds", required = false)
+    List<Long> courseIds, Model model) {
         try {
             if (courseIds == null || courseIds.isEmpty()) {
                 throw new RuntimeException("No courses selected for enrollment.");

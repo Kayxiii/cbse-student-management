@@ -48,7 +48,8 @@ public class StudentController {
 
 	//saving student
 	@PostMapping
-	public String saveStudent(@ModelAttribute("student") Student student, Model model, RedirectAttributes redirectAttributes) {
+	public String saveStudent(@ModelAttribute("student") Student student, Model model, RedirectAttributes redirectAttributes)
+	{
 		try {
 			studentService.saveStudent(student);
 			redirectAttributes.addFlashAttribute("successMessage", "Successfully Added");

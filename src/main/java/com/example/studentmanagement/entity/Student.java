@@ -1,6 +1,5 @@
 package com.example.studentmanagement.entity;
 
-
 import jakarta.persistence.*;
 
 import java.util.ArrayList;

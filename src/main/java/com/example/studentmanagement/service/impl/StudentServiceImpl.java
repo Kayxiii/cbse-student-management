@@ -57,14 +57,11 @@ public class StudentServiceImpl implements StudentService {
     @Override
     @Transactional
     public void deleteStudentById(Long id) {
-        // Step 1: Fetch the student and validate existence
         Student student = studentRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Student not found with ID: " + id));
 
-        // Step 2: Fetch enrollments for the student
         List<Enrollment> enrollments = enrollmentRepository.findByStudentId(id);
 
-        // Step 3: Update 'actual' count for each course associated with the enrollments
         for (Enrollment enrollment : enrollments) {
             Course course = enrollment.getCourse();
 
@@ -76,10 +73,7 @@ public class StudentServiceImpl implements StudentService {
             courseRepository.save(course);
         }
 
-        // Step 4: Delete all enrollments for the student
         enrollmentRepository.deleteAll(enrollments);
-
-        // Step 5: Delete the student
         studentRepository.delete(student);
     }
 

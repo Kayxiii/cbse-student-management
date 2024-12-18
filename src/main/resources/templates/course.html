@@ -78,8 +78,10 @@
           <td th:text="${course.timeStart} + ' - ' + ${course.timeEnd}"></td>
           <td th:text="${course.registrationStatus}"></td>
           <td>
-            <a th:href="@{/courses/edit/{id}(id=${course.id})}" method="POST" class="btn btn-primary btn-sm">Update</a>
-            <a th:href="@{/courses/{id}(id=${course.id})}" method="GET" class="btn btn-danger btn-sm">Delete</a>
+            <a th:href="@{/courses/edit/{id}(id=${course.id})}" class="btn btn-primary btn-sm">Update</a>
+            <form th:action="@{/courses/delete/{id}(id=${course.id})}" method="post" style="display:inline;">
+              <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?');">Delete</button>
+            </form>
           </td>
         </tr>
         </tbody>

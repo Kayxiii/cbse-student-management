@@ -43,7 +43,6 @@ public class CourseController {
         return "course";
     }
 
-
     @GetMapping("/new")
     public String createCourseForm(Model model) {
         model.addAttribute("course", new Course());
@@ -126,7 +125,7 @@ public class CourseController {
         return "redirect:/courses";
     }
 
-    @GetMapping("/{id}")
+    @PostMapping("/delete/{id}")
     public String deleteCourse(@PathVariable Long id, HttpSession session) {
         courseService.deleteCourseById(id);
         session.setAttribute("successCourseMessage", "Successfully Deleted");
